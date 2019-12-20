@@ -12,13 +12,16 @@ app.listen(5000, () => console.log('Server running on port 5000'));
 const request = require('request');
 const cheerio = require('cheerio');
 const nodemailer = require('nodemailer');
+require('dotenv/config');
+
+console.log(process.env.NODEMAILER_USER);
 
 // Step 1
 let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'parceltracker007@gmail.com',
-        pass: 'epitechepitech'
+        user: process.env.NODEMAILER_USER,
+        pass: process.env.NODEMAILER_PASSWORD
     },
     tls: {
         ciphers:'SSLv3'
