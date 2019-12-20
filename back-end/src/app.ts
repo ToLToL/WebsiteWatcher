@@ -14,6 +14,7 @@ const cheerio = require('cheerio');
 
 const url = 'http://service.relaiscolis.com/tracking/suivi_colis.aspx?ens_id=53&num_client=RD25189219&num_colis=3476002201&style=RC&passage=1&exp_id=442903126';
 const interval = 5000; // 5 seconds
+var steps = 1;
 
 setInterval(() => {
     request(url, (error: any, response: any, html: any) => {
@@ -24,6 +25,11 @@ setInterval(() => {
                const item = $(element)
                    .text();
                console.log(item);
+               console.log(i);
+               if (steps != i) {
+                   console.log('New step!');
+                   steps = i;
+               }
          })
         } 
     });
