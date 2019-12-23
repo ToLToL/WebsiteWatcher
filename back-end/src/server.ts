@@ -1,20 +1,7 @@
-/*import express from 'express';
-
-const app = express();
-
-app.get('/', (req, res) => {
-    res.send('Hello');
-});
-
-app.listen(5000, () => console.log('Server running on port 5000'));
-*/
-
 const request = require('request');
 const cheerio = require('cheerio');
 const nodemailer = require('nodemailer');
 require('dotenv/config');
-
-console.log(process.env.NODEMAILER_USER);
 
 // Step 1
 let transporter = nodemailer.createTransport({
