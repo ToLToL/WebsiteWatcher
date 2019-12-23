@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 import User from "../interfaces/User.interface";
 
 export class WebsiteSearch extends Component<User> {
@@ -10,6 +11,10 @@ export class WebsiteSearch extends Component<User> {
     }
 
     onSearchClick = () => {
+        axios.get('http://localhost:4000?url1=yahoo.com')
+            .then(res => {
+                console.log(res.data);
+            })
         console.log('Clicked!');
     }
 
@@ -21,6 +26,7 @@ export class WebsiteSearch extends Component<User> {
           User {name}{" "}
           {numberOfPokemons && <span>has {numberOfPokemons} pokemons</span>}
         </p>
+        <input type="text"/>
         <button onClick={this.onSearchClick} className="my-button">
           Search
         </button>
