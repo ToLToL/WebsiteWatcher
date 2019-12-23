@@ -1,7 +1,26 @@
 const request = require('request');
 const cheerio = require('cheerio');
 const nodemailer = require('nodemailer');
+const webshot = require('webshot');
+const fs = require('fs');
+const PNG = require('pngjs').PNG;
+const pixelmatch = require('pixelmatch');
 require('dotenv/config');
+
+webshot('facebook.com', 'screenshots/facebookEN.png', function(err: any) {
+    if (!err) {
+        console.log("Screenshot saved!");
+    }
+});
+
+const img1 = PNG.sync.read(fs.readFileSync('screenshots/facebookEN.png'));
+const img2 = PNG.sync.read(fs.readFileSync('screenshots/facebookFR.png'));
+const {width, height} = img1;
+const diff = new PNG({width, height});
+ 
+pixelmatch(img1.data, img2.data, diff.data, width, height, {threshold: 0.1});
+ 
+fs.writeFileSync('screenshots/diff.png', PNG.sync.write(diff));
 
 // Step 1
 let transporter = nodemailer.createTransport({
