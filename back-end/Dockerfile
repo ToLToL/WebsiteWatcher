@@ -4,6 +4,7 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
+# Problem with phantomJS => https://github.com/marcbachmann/node-html-pdf/issues/233
 # Add support for https on wget
 RUN apk update && apk add --no-cache wget && apk --no-cache add openssl wget && apk add ca-certificates && update-ca-certificates
 
