@@ -7,6 +7,7 @@ const PNG = require("pngjs").PNG;
 const pixelmatch = require("pixelmatch");
 const express = require("express");
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
 import { Request, Response } from "express";
 import { Server } from "http";
 
@@ -17,6 +18,15 @@ const router = express.Router();
 const options = {
     "phantomPath": "/usr/local/bin/phantomjs"
 }
+
+mongoose.connect("mongodb://website-watcher-db:27017/MyDb", function (err: any, db: any) {
+   
+    if (!err)
+      console.log("Connected to database")
+
+     //Write databse Insert/Update/Query code here..
+                
+});
 
 // Middlewares
 app.use(function(req: Request, res: Response, next: any) {

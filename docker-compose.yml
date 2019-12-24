@@ -2,19 +2,29 @@ version: "3"
 services:
     frontend:
         container_name: website-watcher-front
+        restart: always
         build:
             context: ./front-end
             dockerfile: Dockerfile
         ports:
-            - "3000:3000"
+            - 3000:3000
         volumes:
             - ./front-end:/usr/src/app
     backend:
         container_name: website-watcher-back
+        restart: always
         build:
             context: ./back-end
             dockerfile: Dockerfile
         ports:
-            - "8080:8080"
+            - 8080:8080
         volumes:
             - ./back-end:/usr/src/app
+    db:
+        image: mongo
+        restart: always
+        container_name: website-watcher-db
+        ports:
+            - 27017:27017
+        volumes:
+            - ./db:/db
