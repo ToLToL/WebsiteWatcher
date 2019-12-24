@@ -14,6 +14,9 @@ require("dotenv/config");
 
 const app = express();
 const router = express.Router();
+const options = {
+    "phantomPath": "/usr/local/bin/phantomjs"
+}
 
 // Middlewares
 app.use(function(req: Request, res: Response, next: any) {
@@ -33,7 +36,7 @@ app.use(router);
 // express
 router.get('/', (req: Request, res: Response) => {
     console.log(req.query.url1);
-  webshot(req.query.url1, "screenshots/file1.png", function(err: any) {
+  webshot(req.query.url1, "screenshots/file1.png", options, function(err: any) {
     if (!err) {
       console.log("Screenshot saved!");
       const img1 = PNG.sync.read(fs.readFileSync("screenshots/file1.png"));
@@ -57,8 +60,8 @@ router.get('/', (req: Request, res: Response) => {
   });
 });
 
-app.listen("4000", () => {
-  console.log("Server is running on port 4000");
+app.listen("8080", () => {
+  console.log("Server is running on port 8080");
 });
 
 // // Step 1

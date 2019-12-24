@@ -1,0 +1,20 @@
+version: "3"
+services:
+    frontend:
+        container_name: website-watcher-front
+        build:
+            context: ./front-end
+            dockerfile: Dockerfile
+        ports:
+            - "3000:3000"
+        volumes:
+            - ./front-end:/usr/src/app
+    backend:
+        container_name: website-watcher-back
+        build:
+            context: ./back-end
+            dockerfile: Dockerfile
+        ports:
+            - "8080:8080"
+        volumes:
+            - ./back-end:/usr/src/app

@@ -11,7 +11,7 @@ export class WebsiteSearch extends Component<User> {
     }
 
     onSearchClick = () => {
-        axios.get('http://localhost:4000?url1=yahoo.com')
+        axios.get('http://localhost:8080?url1=yahoo.com')
             .then(res => {
                 console.log(res.data);
             })
